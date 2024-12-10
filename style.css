@@ -63,19 +63,42 @@ body {
   outline: none;
   background-color: white;
   color: black;
+  animation: rainbow-border 3s linear infinite;
 }
 
-/* Rainbow Placeholder Effect */
-.auth-form input::placeholder {
-  background-clip: text;
-  -webkit-background-clip: text;
-  color: transparent;
-  background: linear-gradient(90deg, red, orange, yellow, green, blue, indigo, violet);
-  font-weight: bold;
+/* Animated Rainbow Border */
+@keyframes rainbow-border {
+  0% {
+    border-color: red;
+  }
+  16% {
+    border-color: orange;
+  }
+  32% {
+    border-color: yellow;
+  }
+  48% {
+    border-color: green;
+  }
+  64% {
+    border-color: blue;
+  }
+  80% {
+    border-color: indigo;
+  }
+  100% {
+    border-color: violet;
+  }
 }
 
 .auth-form input:focus {
-  border-color: #ff9800;
+  border-width: 3px;
+}
+
+/* Placeholder Styling */
+.auth-form input::placeholder {
+  color: gray;
+  font-weight: bold;
 }
 
 /* Sign-Up / Login Title */
