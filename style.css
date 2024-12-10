@@ -4,53 +4,55 @@ body {
   padding: 0;
   font-family: Arial, sans-serif;
   display: flex;
-  flex-direction: column;
+  justify-content: center;
   align-items: center;
-  justify-content: flex-start;
   height: 100vh;
   background-color: #121212;
   color: white;
 }
 
-/* Responsive Layout */
-#homepage {
+/* Phone Responsive Layout */
+#app {
   width: 100%;
   max-width: 400px;
-  text-align: center;
-  margin-top: 20px;
+  background-color: #222;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
 }
 
+/* Time Display */
 .time-container {
-  padding: 20px;
-  background: #222;
-  border-radius: 10px;
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  margin-bottom: 20px;
 }
 
 .time {
-  font-size: 3.5rem;
+  font-size: 3rem;
   font-weight: bold;
 }
 
 .date {
-  font-size: 1.5rem;
+  margin-top: 10px;
+  font-size: 1.2rem;
+}
+
+/* Weather */
+#weather {
   margin-top: 10px;
 }
 
 #weather p {
-  font-size: 1rem;
   margin: 5px 0;
 }
 
-/* Task Manager */
+/* Task List */
 #task-page {
-  width: 100%;
-  max-width: 400px;
   margin-top: 20px;
 }
 
 #taskContainer {
-  margin: 20px 0;
+  margin-bottom: 20px;
 }
 
 .task {
@@ -80,13 +82,9 @@ body {
   font-size: 1.2rem;
 }
 
-.task-input-container {
-  display: flex;
-  justify-content: space-between;
-}
-
+/* Task Input */
 #taskInput {
-  flex: 1;
+  width: calc(100% - 50px);
   padding: 10px;
   margin-right: 10px;
   border: 1px solid #444;
@@ -99,7 +97,4 @@ body {
   padding: 10px;
   background-color: #444;
   color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
+  border
