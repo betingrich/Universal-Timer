@@ -1,18 +1,67 @@
 // Elements
+const authPage = document.getElementById('auth-page');
 const homepage = document.getElementById('homepage');
 const todoPage = document.getElementById('todo-page');
+const toggleAuthBtn = document.getElementById('toggle-auth-btn');
+const signupForm = document.getElementById('signup-form');
+const loginForm = document.getElementById('login-form');
+const signupBtn = document.getElementById('signup-btn');
+const loginBtn = document.getElementById('login-btn');
 const gotoTasksBtn = document.getElementById('goto-tasks');
 const gotoHomeBtn = document.getElementById('goto-home');
 const bigTime = document.getElementById('big-time');
-const reminderAudio = document.getElementById('reminder-audio');
-const taskTable = document.querySelector('#task-table tbody');
+const dateDay = document.getElementById('date-day');
 const locationEl = document.getElementById('location');
 const weatherEl = document.getElementById('weather');
+const taskTable = document.querySelector('#task-table tbody');
 
-// Show Current Time
+// State
+let users = {};
+
+// Toggle between login and signup
+toggleAuthBtn.addEventListener('click', () => {
+  signupForm.classList.toggle('hidden');
+  loginForm.classList.toggle('hidden');
+  toggleAuthBtn.textContent = signupForm.classList.contains('hidden')
+    ? 'Switch to Sign Up'
+    : 'Switch to Login';
+});
+
+// Sign Up
+signupBtn.addEventListener('click', () => {
+  const firstName = document.getElementById('signup-first-name').value;
+  const password = document.getElementById('signup-password').value;
+  const confirmPassword = document.getElementById('signup-confirm-password').value;
+
+  if (password === confirmPassword) {
+    users[firstName] = password;
+    alert(`Welcome, ${firstName}!`);
+    authPage.classList.add('hidden');
+    homepage.classList.remove('hidden');
+  } else {
+    alert('Passwords do not match!');
+  }
+});
+
+// Log In
+loginBtn.addEventListener('click', () => {
+  const username = document.getElementById('login-username').value;
+  const password = document.getElementById('login-password').value;
+
+  if (users[username] === password) {
+    alert(`Welcome back, ${username}!`);
+    authPage.classList.add('hidden');
+    homepage.classList.remove('hidden');
+  } else {
+    alert('Invalid username or password!');
+  }
+});
+
+// Show Current Time and Date
 function updateTime() {
   const now = new Date();
   bigTime.textContent = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+  dateDay.textContent = now.toLocaleDateString([], { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
 }
 
 // Generate Task Rows
@@ -28,41 +77,6 @@ function generateTaskRows() {
   }
 }
 
-// Get User Location and Weather
-function fetchLocationAndWeather() {
-  if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(
-      async (position) => {
-        const { latitude, longitude } = position.coords;
-        const weatherResponse = await fetch(
-          `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=metric&appid=YOUR_API_KEY`
-        );
-        const weatherData = await weatherResponse.json();
-        locationEl.textContent = weatherData.name;
-        weatherEl.textContent = `${Math.round(weatherData.main.temp)}°C`;
-      },
-      (error) => {
-        locationEl.textContent = 'Unable to detect';
-        console.error('Geolocation error:', error);
-      }
-    );
-  } else {
-    locationEl.textContent = 'Not supported';
-  }
-}
-
-// Navigation
-gotoTasksBtn.addEventListener('click', () => {
-  homepage.classList.add('hidden');
-  todoPage.classList.remove('hidden');
-});
-
-gotoHomeBtn.addEventListener('click', () => {
-  todoPage.classList.add('hidden');
-  homepage.classList.remove('hidden');
-});
-
 // Initialize App
 setInterval(updateTime, 1000); // Update the clock every second
 generateTaskRows();
-fetchLocationAndWeather();
