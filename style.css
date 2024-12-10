@@ -15,11 +15,12 @@ body {
   align-items: center;
 }
 
-/* Page Container */
+/* Responsive Layout */
 .page {
-  width: 90%;
-  max-width: 600px;
+  width: 100%;
+  max-width: 500px;
   text-align: center;
+  padding: 20px;
 }
 
 .hidden {
@@ -36,21 +37,21 @@ body {
 }
 
 #big-time {
-  font-size: 4rem;
+  font-size: 3.5rem;
   font-weight: bold;
   color: #ffffff;
 }
 
 #location-weather {
   margin-top: 10px;
-  font-size: 1.2rem;
+  font-size: 1rem;
   color: #d9e3f0;
 }
 
 /* Button Styles */
 .btn {
-  padding: 15px 30px;
-  font-size: 1.2rem;
+  padding: 12px 25px;
+  font-size: 1rem;
   border-radius: 8px;
   border: none;
   cursor: pointer;
@@ -84,7 +85,7 @@ body {
 
 #task-table th,
 #task-table td {
-  padding: 10px;
+  padding: 8px;
   border: 1px solid #ddd;
   text-align: center;
 }
@@ -110,4 +111,20 @@ body {
   width: 20px;
   height: 20px;
   cursor: pointer;
+}
+
+/* Responsive Styling */
+@media (max-width: 768px) {
+  #big-time {
+    font-size: 3rem;
+  }
+
+  .btn {
+    font-size: 0.9rem;
+    padding: 10px 20px;
+  }
+
+  h1 {
+    font-size: 1.5rem;
+  }
 }
