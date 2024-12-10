@@ -1,102 +1,104 @@
-document.addEventListener("DOMContentLoaded", () => {
-  // Time and Date Display
-  const timeElement = document.getElementById("current-time");
-  const dateElement = document.getElementById("current-date");
+// Display Current Time and Date
+function updateTime() {
+  const now = new Date();
+  const hours = String(now.getHours()).padStart(2, '0');
+  const minutes = String(now.getMinutes()).padStart(2, '0');
+  const seconds = String(now.getSeconds()).padStart(2, '0');
+  const date = now.toDateString();
 
-  function updateTimeAndDate() {
-    const now = new Date();
-    const time = now.toLocaleTimeString();
-    const date = now.toLocaleDateString("en-US", {
-      weekday: "long",
-      year: "numeric",
-      month: "long",
-      day: "numeric",
+  document.getElementById('current-time').innerText = `${hours}:${minutes}:${seconds}`;
+  document.getElementById('current-date').innerText = date;
+}
+setInterval(updateTime, 1000);
+
+// Fetch Weather Based on Location
+function fetchWeather() {
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(async (position) => {
+      const { latitude, longitude } = position.coords;
+      const apiKey = 'YOUR_API_KEY'; // Replace with your OpenWeather API key
+      const weatherUrl = `https://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&units=metric&appid=${apiKey}`;
+      
+      const response = await fetch(weatherUrl);
+      const data = await response.json();
+
+      document.getElementById('location').innerText = data.name;
+      document.getElementById('temperature').innerText = `${data.main.temp}°C`;
     });
-
-    timeElement.textContent = time;
-    dateElement.textContent = date;
+  } else {
+    document.getElementById('weather').innerText = 'Location access denied';
   }
-  setInterval(updateTimeAndDate, 1000);
+}
+fetchWeather();
 
-  // Weather API
-  const locationElement = document.getElementById("location");
-  const temperatureElement = document.getElementById("temperature");
+// Task Management with Local Storage
+const taskList = []; // Array to store tasks
+const taskContainer = document.getElementById('taskContainer');
+const addTaskBtn = document.getElementById('addTaskBtn');
+const taskInput = document.getElementById('taskInput');
 
-  async function fetchWeather() {
-    try {
-      const response = await fetch("https://ipapi.co/json/");
-      const { city } = await response.json();
+// Load tasks from localStorage on page load
+function loadTasks() {
+  const savedTasks = JSON.parse(localStorage.getItem('tasks')) || [];
+  savedTasks.forEach((task) => createTaskElement(task.text, task.isCompleted));
+}
 
-      const weatherResponse = await fetch(
-        `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=YOUR_API_KEY&units=metric`
-      );
-      const weatherData = await weatherResponse.json();
+// Save tasks to localStorage
+function saveTasks() {
+  localStorage.setItem('tasks', JSON.stringify(taskList));
+}
 
-      locationElement.textContent = city;
-      temperatureElement.textContent = `${weatherData.main.temp}°C, ${weatherData.weather[0].description}`;
-    } catch (error) {
-      locationElement.textContent = "Unable to fetch location";
-      temperatureElement.textContent = "Unable to fetch weather";
-    }
-  }
-  fetchWeather();
+// Create a task element
+function createTaskElement(taskText, isCompleted = false) {
+  const taskEl = document.createElement('div');
+  taskEl.classList.add('task');
+  taskEl.innerHTML = `
+    <input type="checkbox" ${isCompleted ? 'checked' : ''} class="task-checkbox" />
+    <span class="task-text ${isCompleted ? 'completed' : ''}">${taskText}</span>
+    <button class="delete-task">✖</button>
+  `;
+  taskContainer.appendChild(taskEl);
 
-  // Task Manager
-  const taskContainer = document.getElementById("taskContainer");
-  const taskInput = document.getElementById("taskInput");
-  const addTaskBtn = document.getElementById("addTaskBtn");
+  // Add event listeners
+  const checkbox = taskEl.querySelector('.task-checkbox');
+  const deleteBtn = taskEl.querySelector('.delete-task');
 
-  const savedTasks = JSON.parse(localStorage.getItem("tasks")) || [];
-
-  function saveTasks() {
-    localStorage.setItem("tasks", JSON.stringify(savedTasks));
-  }
-
-  function renderTasks() {
-    taskContainer.innerHTML = "";
-    savedTasks.forEach((task, index) => {
-      const taskElement = document.createElement("div");
-      taskElement.className = "task";
-
-      const checkbox = document.createElement("input");
-      checkbox.type = "checkbox";
-      checkbox.checked = task.completed;
-      checkbox.className = "task-checkbox";
-      checkbox.addEventListener("change", () => {
-        task.completed = checkbox.checked;
-        saveTasks();
-        renderTasks();
-      });
-
-      const taskText = document.createElement("div");
-      taskText.className = `task-text ${task.completed ? "completed" : ""}`;
-      taskText.textContent = task.text;
-
-      const deleteBtn = document.createElement("button");
-      deleteBtn.textContent = "✖";
-      deleteBtn.className = "delete-task";
-      deleteBtn.addEventListener("click", () => {
-        savedTasks.splice(index, 1);
-        saveTasks();
-        renderTasks();
-      });
-
-      taskElement.appendChild(checkbox);
-      taskElement.appendChild(taskText);
-      taskElement.appendChild(deleteBtn);
-      taskContainer.appendChild(taskElement);
-    });
-  }
-
-  addTaskBtn.addEventListener("click", () => {
-    const taskText = taskInput.value.trim();
-    if (taskText) {
-      savedTasks.push({ text: taskText, completed: false });
-      saveTasks();
-      renderTasks();
-      taskInput.value = "";
-    }
+  checkbox.addEventListener('change', () => {
+    const index = Array.from(taskContainer.children).indexOf(taskEl);
+    taskList[index].isCompleted = checkbox.checked;
+    saveTasks();
+    updateTaskStyle(checkbox, taskEl);
   });
 
-  renderTasks();
+  deleteBtn.addEventListener('click', () => {
+    const index = Array.from(taskContainer.children).indexOf(taskEl);
+    taskList.splice(index, 1);
+    taskContainer.removeChild(taskEl);
+    saveTasks();
+  });
+
+  taskList.push({ text: taskText, isCompleted });
+  saveTasks();
+}
+
+// Update task text style based on completion
+function updateTaskStyle(checkbox, taskEl) {
+  const taskText = taskEl.querySelector('.task-text');
+  if (checkbox.checked) {
+    taskText.classList.add('completed');
+  } else {
+    taskText.classList.remove('completed');
+  }
+}
+
+// Add new task
+addTaskBtn.addEventListener('click', () => {
+  const taskText = taskInput.value.trim();
+  if (taskText !== '') {
+    createTaskElement(taskText);
+    taskInput.value = '';
+  }
 });
+
+// Initialize tasks
+loadTasks();
