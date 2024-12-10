@@ -3,37 +3,48 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Marisels Timer</title>
+  <title>Pro Reminder Clock</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="container">
+  <div class="app">
+    <!-- Header Section -->
     <header>
-      <h1>Reminder Calendar</h1>
-      <div id="clock"></div>
-      <div id="date"></div>
+      <h1 class="gradient-text">Pro Reminder Clock</h1>
+      <div class="clock-container">
+        <div id="clock"></div>
+        <div id="date"></div>
+      </div>
     </header>
 
+    <!-- Main Section -->
     <main>
-      <div class="calendar-container">
-        <input type="date" id="date-picker">
-        <button id="add-task-button">Add Task</button>
-      </div>
-      <div id="tasks-container"></div>
-    </main>
-  </div>
+      <!-- Calendar and Task Controls -->
+      <section class="controls">
+        <input type="date" id="date-picker" class="input-date">
+        <button id="add-task-btn" class="btn primary">Add Reminder</button>
+      </section>
 
-  <div id="task-modal" class="modal hidden">
-    <div class="modal-content">
-      <h2>Add Reminder</h2>
-      <form id="task-form">
-        <label for="task-time">Time:</label>
-        <input type="time" id="task-time" required>
-        <label for="task-desc">Task Description:</label>
-        <textarea id="task-desc" rows="3" required></textarea>
-        <button type="submit">Save Task</button>
-        <button type="button" id="close-modal">Cancel</button>
-      </form>
+      <!-- Task List -->
+      <section id="tasks" class="tasks">
+        <h2>Your Reminders</h2>
+        <ul id="task-list"></ul>
+      </section>
+    </main>
+
+    <!-- Modal -->
+    <div id="task-modal" class="modal hidden">
+      <div class="modal-content">
+        <h3>Add New Reminder</h3>
+        <form id="task-form">
+          <label for="task-time">Select Time:</label>
+          <input type="time" id="task-time" required>
+          <label for="task-desc">Description:</label>
+          <textarea id="task-desc" rows="3" placeholder="Write your task here..." required></textarea>
+          <button type="submit" class="btn success">Save Reminder</button>
+          <button type="button" id="close-modal" class="btn danger">Cancel</button>
+        </form>
+      </div>
     </div>
   </div>
 
