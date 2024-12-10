@@ -7,44 +7,26 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <!-- Authentication Page -->
-  <div id="auth-page" class="page">
-    <h1>Sign Up / Log In</h1>
-
-    <!-- Sign-Up Form -->
-    <form id="signup-form" class="auth-form">
-      <input type="text" id="signup-first-name" placeholder="Enter your name" required>
-      <input type="password" id="signup-password" placeholder="Enter your password" required>
-      <input type="password" id="signup-confirm-password" placeholder="Confirm your password" required>
-      <button type="button" id="signup-btn" class="btn primary">Sign Up</button>
-    </form>
-
-    <!-- Login Form -->
-    <form id="login-form" class="auth-form hidden">
-      <input type="text" id="login-username" placeholder="Enter your name" required>
-      <input type="password" id="login-password" placeholder="Enter your password" required>
-      <button type="button" id="login-btn" class="btn primary">Log In</button>
-    </form>
-
-    <!-- Toggle Auth Button -->
-    <button id="toggle-auth-btn" class="btn secondary">Switch to Login</button>
-  </div>
-
-  <!-- Timer & To-Do Homepage -->
-  <div id="homepage" class="page hidden">
+  <!-- Page Container -->
+  <div id="homepage" class="page">
+    <!-- Time Display -->
     <div class="time-container">
       <div id="big-time"></div>
       <div id="location-weather">
         <span id="location">Detecting...</span> | <span id="weather">--°C</span>
       </div>
     </div>
+    <!-- Navigation Button -->
     <button id="goto-tasks" class="btn primary">Go to Tasks</button>
+    <button id="logout" class="btn secondary">Logout</button>
   </div>
 
   <!-- To-Do Page -->
   <div id="todo-page" class="page hidden">
     <h1>Daily Schedule</h1>
     <p>Plan your tasks between <strong>7 AM</strong> and <strong>10 PM</strong>.</p>
+
+    <!-- Task Table -->
     <table id="task-table">
       <thead>
         <tr>
@@ -53,10 +35,17 @@
           <th>Status</th>
         </tr>
       </thead>
-      <tbody></tbody>
+      <tbody>
+        <!-- Rows for each hour -->
+      </tbody>
     </table>
+
+    <!-- Navigation Button -->
     <button id="goto-home" class="btn secondary">Back to Clock</button>
   </div>
+
+  <!-- Audio Reminder -->
+  <audio id="reminder-audio" src="your-audio-file.mp3"></audio>
 
   <script src="script.js"></script>
 </body>
