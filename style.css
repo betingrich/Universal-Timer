@@ -4,62 +4,55 @@ body {
   padding: 0;
   font-family: Arial, sans-serif;
   display: flex;
-  flex-direction: column;
+  justify-content: center;
   align-items: center;
-  justify-content: flex-start;
   height: 100vh;
   background-color: #121212;
   color: white;
 }
 
-/* Homepage Styling */
-#homepage {
+/* Phone Responsive Layout */
+#app {
   width: 100%;
   max-width: 400px;
-  text-align: center;
-  margin-top: 20px;
-}
-
-.time-container {
-  padding: 20px;
-  background: #222;
-  border-radius: 10px;
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
-}
-
-.time {
-  font-size: 3.5rem;
-  font-weight: bold;
-}
-
-.date {
-  font-size: 1.5rem;
-  margin-top: 10px;
-}
-
-#weather p {
-  font-size: 1rem;
-  margin: 5px 0;
-}
-
-/* Task Manager */
-#task-page {
-  width: 100%;
-  max-width: 400px;
-  margin-top: 20px;
-  padding: 10px;
   background-color: #222;
+  padding: 20px;
   border-radius: 10px;
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
 }
 
-h2 {
+/* Time Display */
+.time-container {
   text-align: center;
   margin-bottom: 20px;
 }
 
+.time {
+  font-size: 3rem;
+  font-weight: bold;
+}
+
+.date {
+  margin-top: 10px;
+  font-size: 1.2rem;
+}
+
+/* Weather */
+#weather {
+  margin-top: 10px;
+}
+
+#weather p {
+  margin: 5px 0;
+}
+
+/* Task List */
+#task-page {
+  margin-top: 20px;
+}
+
 #taskContainer {
-  margin: 20px 0;
+  margin-bottom: 20px;
 }
 
 .task {
@@ -89,14 +82,9 @@ h2 {
   font-size: 1.2rem;
 }
 
-.task-input-container {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 10px;
-}
-
+/* Task Input */
 #taskInput {
-  flex: 1;
+  width: calc(100% - 50px);
   padding: 10px;
   margin-right: 10px;
   border: 1px solid #444;
@@ -112,4 +100,8 @@ h2 {
   border: none;
   border-radius: 5px;
   cursor: pointer;
+}
+
+#addTaskBtn:hover {
+  background-color: #666;
 }
