@@ -1,57 +1,51 @@
-// Real-time Clock and Date
-function updateClock() {
-  const now = new Date();
-  const time = now.toLocaleTimeString();
-  const microseconds = now.getMilliseconds();
-  const date = now.toLocaleDateString();
+// Real-Time Clock and Date
+function startClock() {
+  const clockElement = document.getElementById("clock");
+  const dateElement = document.getElementById("date");
 
-  document.getElementById('clock').innerText = `${time}.${microseconds}`;
-  document.getElementById('date').innerText = `Date: ${date}`;
+  setInterval(() => {
+    const now = new Date();
+    clockElement.textContent = now.toLocaleTimeString();
+    dateElement.textContent = now.toLocaleDateString();
+  }, 1000);
 }
-setInterval(updateClock, 10); // Update every 10ms
 
-// Task Modal
-const modal = document.getElementById('task-modal');
-const addTaskButton = document.getElementById('add-task-button');
-const closeModalButton = document.getElementById('close-modal');
-const taskForm = document.getElementById('task-form');
-const tasksContainer = document.getElementById('tasks-container');
+// Open and Close Modal
+const modal = document.getElementById("task-modal");
+const addTaskBtn = document.getElementById("add-task-btn");
+const closeModalBtn = document.getElementById("close-modal");
+addTaskBtn.addEventListener("click", () => modal.classList.remove("hidden"));
+closeModalBtn.addEventListener("click", () => modal.classList.add("hidden"));
 
-addTaskButton.addEventListener('click', () => {
-  modal.classList.remove('hidden');
-});
+// Add Task Functionality
+const taskForm = document.getElementById("task-form");
+const taskList = document.getElementById("task-list");
 
-closeModalButton.addEventListener('click', () => {
-  modal.classList.add('hidden');
-});
-
-// Save Task
-taskForm.addEventListener('submit', (e) => {
+taskForm.addEventListener("submit", (e) => {
   e.preventDefault();
 
-  const taskTime = document.getElementById('task-time').value;
-  const taskDesc = document.getElementById('task-desc').value;
+  const taskTime = document.getElementById("task-time").value;
+  const taskDesc = document.getElementById("task-desc").value;
 
-  // Create task item
-  const taskItem = document.createElement('div');
-  taskItem.classList.add('task-item');
-  taskItem.innerText = `${taskTime} - ${taskDesc}`;
-  tasksContainer.appendChild(taskItem);
+  // Add Task to List
+  const taskItem = document.createElement("li");
+  taskItem.classList.add("task-item");
+  taskItem.innerHTML = `
+    <span>${taskTime} - ${taskDesc}</span>
+    <button class="btn danger remove-btn">Remove</button>
+  `;
 
-  // Set alarm
-  const taskDate = document.getElementById('date-picker').value;
-  const alarmTime = new Date(`${taskDate}T${taskTime}`);
-  const currentTime = new Date();
+  // Remove Task
+  taskItem.querySelector(".remove-btn").addEventListener("click", () => {
+    taskItem.remove();
+  });
 
-  if (alarmTime > currentTime) {
-    setTimeout(() => {
-      alert(`Reminder: ${taskDesc}`);
-    }, alarmTime - currentTime);
-  } else {
-    alert('Selected time is in the past!');
-  }
+  taskList.appendChild(taskItem);
 
-  // Clear and hide modal
+  // Close Modal
+  modal.classList.add("hidden");
   taskForm.reset();
-  modal.classList.add('hidden');
 });
+
+// Initialize Clock
+startClock();
