@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Marisels Timer</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1>Reminder Calendar</h1>
+      <div id="clock"></div>
+      <div id="date"></div>
+    </header>
+
+    <main>
+      <div class="calendar-container">
+        <input type="date" id="date-picker">
+        <button id="add-task-button">Add Task</button>
+      </div>
+      <div id="tasks-container"></div>
+    </main>
+  </div>
+
+  <div id="task-modal" class="modal hidden">
+    <div class="modal-content">
+      <h2>Add Reminder</h2>
+      <form id="task-form">
+        <label for="task-time">Time:</label>
+        <input type="time" id="task-time" required>
+        <label for="task-desc">Task Description:</label>
+        <textarea id="task-desc" rows="3" required></textarea>
+        <button type="submit">Save Task</button>
+        <button type="button" id="close-modal">Cancel</button>
+      </form>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
