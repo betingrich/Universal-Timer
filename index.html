@@ -7,11 +7,35 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <!-- Page Container -->
-  <div id="homepage" class="page">
-    <!-- Time Display -->
+  <!-- Login/Signup Page -->
+  <div id="auth-page" class="page">
+    <h1>Welcome to Marisel's Reminder Web</h1>
+    <div id="auth-container">
+      <div id="signup-form" class="auth-form">
+        <h2>Sign Up</h2>
+        <input type="text" id="signup-first-name" placeholder="First Name" required>
+        <input type="text" id="signup-second-name" placeholder="Second Name" required>
+        <input type="text" id="signup-country" placeholder="Country" required>
+        <input type="password" id="signup-password" placeholder="Password" required>
+        <input type="password" id="signup-confirm-password" placeholder="Confirm Password" required>
+        <button id="signup-btn" class="btn primary">Sign Up</button>
+      </div>
+      <div id="login-form" class="auth-form hidden">
+        <h2>Log In</h2>
+        <input type="text" id="login-username" placeholder="Username (First Name)" required>
+        <input type="password" id="login-password" placeholder="Password" required>
+        <button id="login-btn" class="btn secondary">Log In</button>
+      </div>
+      <button id="toggle-auth-btn" class="btn">Switch to Login</button>
+    </div>
+  </div>
+
+  <!-- Timer Homepage -->
+  <div id="homepage" class="page hidden">
+    <!-- Time and Date Display -->
     <div class="time-container">
       <div id="big-time"></div>
+      <div id="date-day"></div>
       <div id="location-weather">
         <span id="location">Detecting...</span> | <span id="weather">--°C</span>
       </div>
