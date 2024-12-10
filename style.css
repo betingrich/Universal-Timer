@@ -1,3 +1,17 @@
+/* Rainbow Placeholder Animation */
+@keyframes rainbow {
+  0% { color: red; }
+  25% { color: orange; }
+  50% { color: yellow; }
+  75% { color: green; }
+  100% { color: blue; }
+}
+
+/* Placeholder Styling */
+input::placeholder {
+  animation: rainbow 2s infinite;
+}
+
 /* General Reset */
 * {
   margin: 0;
