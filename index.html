@@ -3,29 +3,49 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Task Timer</title>
-  <link rel="stylesheet" href="styles.css">
+  <title>Marisel's Timer & To-Do</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div id="app">
-    <div id="homepage">
-      <div class="time-container">
-        <div class="time" id="current-time">00:00:00</div>
-        <div class="date" id="current-date"></div>
-        <div id="weather">
-          <p id="location"></p>
-          <p id="temperature"></p>
-        </div>
+  <!-- Page Container -->
+  <div id="homepage" class="page">
+    <!-- Time Display -->
+    <div class="time-container">
+      <div id="big-time"></div>
+      <div id="location-weather">
+        <span id="location">Detecting...</span> | <span id="weather">--°C</span>
       </div>
     </div>
-    
-    <div id="task-page">
-      <h2>Daily Tasks</h2>
-      <div id="taskContainer"></div>
-      <input id="taskInput" type="text" placeholder="Add your task here..." />
-      <button id="addTaskBtn">Add Task</button>
-    </div>
+    <!-- Navigation Button -->
+    <button id="goto-tasks" class="btn primary">Go to Tasks</button>
   </div>
+
+  <!-- To-Do Page -->
+  <div id="todo-page" class="page hidden">
+    <h1>Daily Schedule</h1>
+    <p>Plan your tasks between <strong>7 AM</strong> and <strong>10 PM</strong>.</p>
+
+    <!-- Task Table -->
+    <table id="task-table">
+      <thead>
+        <tr>
+          <th>Time</th>
+          <th>Task</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Rows for each hour -->
+      </tbody>
+    </table>
+
+    <!-- Navigation Button -->
+    <button id="goto-home" class="btn secondary">Back to Clock</button>
+  </div>
+
+  <!-- Audio Reminder -->
+  <audio id="reminder-audio" src="your-audio-file.mp3"></audio>
+
   <script src="script.js"></script>
 </body>
 </html>
