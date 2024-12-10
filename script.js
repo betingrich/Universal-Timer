@@ -27,20 +27,32 @@ toggleAuthBtn.addEventListener('click', () => {
     : 'Switch to Login';
 });
 
+// Password Validation Function
+function isValidPassword(password) {
+  const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+  return passwordRegex.test(password);
+}
+
 // Sign Up
 signupBtn.addEventListener('click', () => {
   const firstName = document.getElementById('signup-first-name').value;
   const password = document.getElementById('signup-password').value;
   const confirmPassword = document.getElementById('signup-confirm-password').value;
 
-  if (password === confirmPassword) {
-    users[firstName] = password;
-    alert(`Welcome, ${firstName}!`);
-    authPage.classList.add('hidden');
-    homepage.classList.remove('hidden');
-  } else {
-    alert('Passwords do not match!');
+  if (!isValidPassword(password)) {
+    alert('Password must be at least 8 characters long, include numbers, uppercase, lowercase, and a symbol.');
+    return;
   }
+
+  if (password !== confirmPassword) {
+    alert('Passwords do not match!');
+    return;
+  }
+
+  users[firstName] = password;
+  alert(`Welcome, ${firstName}!`);
+  authPage.classList.add('hidden');
+  homepage.classList.remove('hidden');
 });
 
 // Log In
