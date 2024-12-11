@@ -1,68 +1,52 @@
-// Elements for Signup and Login
-const signupForm = document.getElementById("signup-form");
-const loginForm = document.getElementById("login-form");
-const signupPage = document.getElementById("signup-page");
-const loginPage = document.getElementById("login-page");
+// Ensure user is logged in before accessing the main page
+document.addEventListener("DOMContentLoaded", () => {
+  const username = localStorage.getItem("username");
 
-// Signup Logic
-if (signupForm) {
-  signupForm.addEventListener("submit", function (event) {
-    event.preventDefault(); // Prevent form from submitting
+  if (!username) {
+    alert("You must log in first!");
+    window.location.href = "login.html";
+  } else {
+    document.getElementById("welcome-message").textContent = `Welcome, ${username}!`;
+  }
+});
 
-    const firstName = document.getElementById("first-name").value;
-    const lastName = document.getElementById("last-name").value;
-    const country = document.getElementById("country").value;
-    const password = document.getElementById("password").value;
-    const confirmPassword = document.getElementById("confirm-password").value;
+// Example of main page functionality
+const tasks = []; // Array to store tasks
 
-    // Check if all fields are filled
-    if (!firstName || !lastName || !country || !password || !confirmPassword) {
-      alert("All fields are required!");
-      return;
-    }
+// Add a task
+document.getElementById("add-task-form").addEventListener("submit", (event) => {
+  event.preventDefault();
 
-    // Check if password and confirm password match
-    if (password !== confirmPassword) {
-      alert("Passwords do not match!");
-      return;
-    }
+  const taskInput = document.getElementById("task-input");
+  const task = taskInput.value.trim();
 
-    // Check if password meets requirements
-    const passwordPattern = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
-    if (!passwordPattern.test(password)) {
-      alert("Password must have at least 8 characters, including uppercase, lowercase, a number, and a symbol.");
-      return;
-    }
+  if (!task) {
+    alert("Task cannot be empty!");
+    return;
+  }
 
-    // Simulate saving user data (use backend or localStorage for real apps)
-    localStorage.setItem("user", JSON.stringify({ firstName, lastName, country }));
+  tasks.push(task);
+  renderTasks();
+  taskInput.value = "";
+});
 
-    alert("Signup successful! Redirecting to the main page.");
+// Render tasks
+function renderTasks() {
+  const taskList = document.getElementById("task-list");
+  taskList.innerHTML = "";
 
-    // Redirect to main page after successful signup
-    window.location.href = "index.html"; // Redirect to main page
-  });
-}
+  tasks.forEach((task, index) => {
+    const li = document.createElement("li");
+    li.textContent = task;
 
-// Login Logic
-if (loginForm) {
-  loginForm.addEventListener("submit", function (event) {
-    event.preventDefault(); // Prevent form from submitting
+    const deleteBtn = document.createElement("button");
+    deleteBtn.textContent = "Delete";
+    deleteBtn.onclick = () => {
+      tasks.splice(index, 1);
+      renderTasks();
+    };
 
-    const username = document.getElementById("login-username").value;
-    const password = document.getElementById("login-password").value;
-
-    // Check if the user exists (for demo, we use localStorage, in real cases, use an API)
-    const savedUser = JSON.parse(localStorage.getItem("user"));
-
-    if (!savedUser || savedUser.firstName !== username || savedUser.password !== password) {
-      alert("Incorrect username or password.");
-      return;
-    }
-
-    alert("Login successful! Redirecting to the main page.");
-
-    // Redirect to main page after successful login
-    window.location.href = "index.html"; // Redirect to main page
+    li.appendChild(deleteBtn);
+    taskList.appendChild(li);
   });
 }
