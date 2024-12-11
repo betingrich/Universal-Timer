@@ -3,20 +3,20 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sign Up</title>
+  <title>Signup</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <form id="signup-form">
-    <h1>Sign Up</h1>
-    <input type="text" id="first-name" placeholder="First Name" required>
-    <input type="text" id="last-name" placeholder="Last Name" required>
-    <input type="text" id="country" placeholder="Country" required>
-    <input type="password" id="password" placeholder="Password" required>
-    <input type="password" id="confirm-password" placeholder="Confirm Password" required>
-    <button type="submit">Create Account</button>
-    <p>Already have an account? <a href="login.html">Switch to Login</a></p>
-  </form>
-  <script src="index.js"></script>
+  <div class="form-container">
+    <h1>Create Account</h1>
+    <form id="signup-form">
+      <input type="text" id="username" class="input-box" placeholder="Username" required>
+      <input type="password" id="password" class="input-box" placeholder="Password" required>
+      <input type="password" id="confirm-password" class="input-box" placeholder="Confirm Password" required>
+      <button type="submit" class="btn">Create Account</button>
+    </form>
+    <p class="switch-link" onclick="window.location.href='login.html'">Already have an account? Login</p>
+  </div>
+  <script src="signup.js"></script>
 </body>
 </html>
