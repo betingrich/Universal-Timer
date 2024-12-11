@@ -5,12 +5,22 @@ body {
   font-family: 'Roboto', sans-serif;
   background-color: black; /* Full black background */
   color: #fff;
+  height: 100vh;
   overflow-x: hidden;
-  height: 100%;
 }
 
+/* Center everything in the middle */
 * {
   box-sizing: border-box;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  flex-direction: column;
 }
 
 /* Common Button Styles */
@@ -42,20 +52,18 @@ button:active {
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background: linear-gradient(135deg, rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.7)), url("https://i.ibb.co/QPbpvmP/landing-page-image.jpg");
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
+  background-color: #000;
 }
 
 .auth-container {
-  background-color: rgba(0, 0, 0, 0.8);
-  padding: 30px 40px;
-  border-radius: 10px;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.5);
-  text-align: center;
+  background-color: rgba(0, 0, 0, 0.9);
+  padding: 40px;
+  border-radius: 12px;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6);
   width: 100%;
-  max-width: 400px;
+  max-width: 450px;
+  text-align: center;
+  margin: auto;
 }
 
 .auth-container h1 {
@@ -65,7 +73,7 @@ button:active {
 
 .auth-container input {
   width: 100%;
-  padding: 12px;
+  padding: 14px;
   margin: 10px 0;
   border: 2px solid #ccc;
   border-radius: 8px;
@@ -119,7 +127,7 @@ button:active {
 
 /* Main Page */
 .index-page {
-  background: url("https://i.ibb.co/N7Vd2kL/time-page-image.jpg") center/cover no-repeat;
+  background-color: black;
   min-height: 100vh;
   padding: 50px;
   text-align: center;
@@ -141,7 +149,7 @@ button:active {
 
 /* Task Page */
 .task-page {
-  background: url("https://i.ibb.co/7prt6R0/task-page-image.jpg") center/cover no-repeat;
+  background-color: #111;
   min-height: 100vh;
   padding: 50px;
   text-align: center;
@@ -149,7 +157,7 @@ button:active {
 
 .task-container {
   background-color: rgba(255, 255, 255, 0.9);
-  padding: 20px;
+  padding: 30px;
   border-radius: 15px;
   box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
   width: 100%;
