@@ -10,20 +10,27 @@ document.getElementById("signup-form").addEventListener("submit", (event) => {
     return;
   }
 
-  const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
-  if (!passwordRegex.test(password)) {
-    alert("Password must have at least 8 characters, including uppercase, lowercase, a number, and a symbol.");
-    return;
-  }
-
   if (password !== confirmPassword) {
     alert("Passwords do not match!");
     return;
   }
 
-  localStorage.setItem("username", username);
-  localStorage.setItem("userPassword", password);
+  if (
+    password.length < 8 ||
+    !/[A-Z]/.test(password) ||
+    !/[a-z]/.test(password) ||
+    !/[0-9]/.test(password) ||
+    !/[!@#$%^&*]/.test(password)
+  ) {
+    alert(
+      "Password must be at least 8 characters long and include uppercase, lowercase, a number, and a special character."
+    );
+    return;
+  }
 
-  alert("Account created successfully!");
-  window.location.href = "login.html";
+  localStorage.setItem("username", username);
+  localStorage.setItem("password", password);
+
+  alert("Signup successful!");
+  window.location.href = "index.html"; // Redirect to the main page
 });
