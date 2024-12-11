@@ -1,7 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
   const username = localStorage.getItem("username");
 
-  // Redirect to login if no user is found
   if (!username) {
     alert("You must log in first!");
     window.location.href = "login.html";
@@ -9,7 +8,7 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("welcome-message").textContent = `Welcome, ${username}!`;
   }
 
-  // Clock and Date Functionality
+  // Clock and Date
   const currentTime = document.getElementById("current-time");
   const currentDate = document.getElementById("current-date");
 
@@ -43,25 +42,54 @@ document.addEventListener("DOMContentLoaded", () => {
     clockPage.classList.remove("hidden");
   });
 
-  // Task Functionality
-  const taskForm = document.getElementById("add-task-form");
-  const taskInput = document.getElementById("task-input");
-  const taskList = document.getElementById("task-list");
+  // Task Scheduler
+  const timeSelect = document.getElementById("time-select");
+  const taskForm = document.getElementById("task-form");
+  const taskTableBody = document.querySelector("#task-table tbody");
 
+  // Generate time intervals
+  const intervals = [];
+  for (let hour = 7; hour <= 22; hour++) {
+    for (let minute = 0; minute < 60; minute += 15) {
+      intervals.push(
+        `${String(hour).padStart(2, "0")}:${String(minute).padStart(2, "0")}`
+      );
+    }
+  }
+
+  // Populate the time select dropdown
+  intervals.forEach((time) => {
+    const option = document.createElement("option");
+    option.value = time;
+    option.textContent = time;
+    timeSelect.appendChild(option);
+  });
+
+  // Add task
   taskForm.addEventListener("submit", (event) => {
     event.preventDefault();
-    const taskText = taskInput.value.trim();
+    const selectedTime = timeSelect.value;
+    const taskText = document.getElementById("task-input").value.trim();
+
     if (taskText) {
-      const taskItem = document.createElement("li");
-      taskItem.textContent = taskText;
-      taskList.appendChild(taskItem);
-      taskInput.value = "";
+      const row = document.createElement("tr");
+      const timeCell = document.createElement("td");
+      const taskCell = document.createElement("td");
+
+      timeCell.textContent = selectedTime;
+      taskCell.textContent = taskText;
+
+      row.appendChild(timeCell);
+      row.appendChild(taskCell);
+      taskTableBody.appendChild(row);
+
+      taskForm.reset();
     }
   });
 });
 
-// Logout Functionality
+// Logout
 function logout() {
-  localStorage.clear(); // Clear user data
-  window.location.href = "login.html"; // Redirect to login
+  localStorage.clear();
+  window.location.href = "login.html";
 }
