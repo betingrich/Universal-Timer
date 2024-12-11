@@ -1,163 +1,103 @@
-/* General Page Styles */
-body {
-  font-family: Arial, sans-serif;
+/* General Reset */
+body, html {
   margin: 0;
   padding: 0;
-  background: linear-gradient(135deg, #1e1e2f, #3c3c5c);
-  color: white;
+  font-family: Arial, sans-serif;
+  background: linear-gradient(120deg, #f0f8ff, #e6e6fa);
+  color: #333;
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
-  overflow: hidden;
 }
 
-.page {
-  display: none;
-  flex-direction: column;
-  align-items: center;
+/* Form Container */
+.form-container {
+  background: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+  width: 90%;
+  max-width: 400px;
   text-align: center;
 }
 
-.page:not(.hidden) {
-  display: flex;
+/* Form Heading */
+.form-container h1 {
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+  color: #4b0082;
 }
 
-/* Buttons */
-.btn {
-  background-color: #ff9800;
-  color: white;
-  border: none;
-  padding: 10px 20px;
+/* Input Fields */
+.input-box {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 2px solid transparent;
   border-radius: 5px;
+  outline: none;
+  font-size: 1rem;
+  background: #f9f9f9;
+  transition: all 0.4s ease-in-out;
+}
+
+/* Rainbow Border Animation */
+.input-box:focus {
+  background: #fff;
+  animation: rainbow-border 2s infinite linear;
+}
+
+@keyframes rainbow-border {
+  0% { border-color: #ff0000; }
+  25% { border-color: #ff8000; }
+  50% { border-color: #ffff00; }
+  75% { border-color: #00ff00; }
+  100% { border-color: #0000ff; }
+}
+
+/* Placeholder Style */
+.input-box::placeholder {
+  color: #888;
+  font-style: italic;
+  opacity: 0.8;
+}
+
+/* Button */
+.btn {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  font-size: 1rem;
+  color: #fff;
+  background: linear-gradient(90deg, #6a5acd, #8a2be2);
   cursor: pointer;
-  font-size: 16px;
-  transition: background-color 0.3s ease;
+  transition: background 0.3s ease-in-out;
 }
 
 .btn:hover {
-  background-color: #e68a00;
+  background: linear-gradient(90deg, #8a2be2, #6a5acd);
 }
 
 .btn.secondary {
-  background-color: #8e44ad;
+  background: linear-gradient(90deg, #00bcd4, #2196f3);
 }
 
 .btn.secondary:hover {
-  background-color: #732d91;
+  background: linear-gradient(90deg, #2196f3, #00bcd4);
 }
 
-/* Auth Form */
-.auth-form {
-  width: 300px;
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
+/* Switch Link */
+.switch-link {
+  margin-top: 15px;
+  font-size: 0.9rem;
+  color: #4b0082;
+  cursor: pointer;
+  text-decoration: underline;
+  transition: color 0.3s ease-in-out;
 }
 
-.auth-form input {
-  padding: 10px;
-  border: 2px solid transparent;
-  border-radius: 5px;
-  font-size: 14px;
-  outline: none;
-  background-color: white;
-  color: black;
-  animation: rainbow-border 3s linear infinite;
-}
-
-/* Animated Rainbow Border */
-@keyframes rainbow-border {
-  0% {
-    border-color: red;
-  }
-  16% {
-    border-color: orange;
-  }
-  32% {
-    border-color: yellow;
-  }
-  48% {
-    border-color: green;
-  }
-  64% {
-    border-color: blue;
-  }
-  80% {
-    border-color: indigo;
-  }
-  100% {
-    border-color: violet;
-  }
-}
-
-.auth-form input:focus {
-  border-width: 3px;
-}
-
-/* Placeholder Styling */
-.auth-form input::placeholder {
-  color: gray;
-  font-weight: bold;
-}
-
-/* Sign-Up / Login Title */
-h1 {
-  font-size: 24px;
-  margin-bottom: 20px;
-}
-
-/* Time Display */
-.time-container {
-  text-align: center;
-  margin-bottom: 20px;
-}
-
-#big-time {
-  font-size: 48px;
-  font-weight: bold;
-}
-
-#location-weather {
-  font-size: 16px;
-}
-
-/* Task Table */
-#task-table {
-  width: 80%;
-  margin: 20px auto;
-  border-collapse: collapse;
-  color: white;
-}
-
-#task-table th, #task-table td {
-  padding: 10px;
-  border: 1px solid #ddd;
-  text-align: center;
-}
-
-#task-table th {
-  background-color: #333;
-}
-
-.task-input {
-  width: 100%;
-  padding: 5px;
-  border: 1px solid #ddd;
-  border-radius: 3px;
-}
-
-.checkmark {
-  transform: scale(1.2);
-}
-
-/* Media Queries */
-@media (max-width: 600px) {
-  .auth-form, #task-table {
-    width: 100%;
-  }
-
-  .btn {
-    font-size: 14px;
-  }
+.switch-link:hover {
+  color: #8a2be2;
 }
