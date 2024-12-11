@@ -1,17 +1,16 @@
-const loginForm = document.getElementById('login-form');
+document.getElementById("login-form").addEventListener("submit", (event) => {
+  event.preventDefault();
 
-loginForm.addEventListener('submit', (e) => {
-  e.preventDefault();
-  const email = document.getElementById('email').value;
-  const password = document.getElementById('password').value;
+  const username = document.getElementById("login-username").value.trim();
+  const password = document.getElementById("login-password").value;
 
-  // Basic Validation
-  if (!email || !password) {
-    alert('All fields are required!');
-    return;
+  const storedUsername = localStorage.getItem("username");
+  const storedPassword = localStorage.getItem("userPassword");
+
+  if (username === storedUsername && password === storedPassword) {
+    alert("Login successful!");
+    window.location.href = "index.html";
+  } else {
+    alert("Invalid username or password. Please try again.");
   }
-
-  // Mock Login Success
-  localStorage.setItem('userLoggedIn', true);
-  window.location.href = 'index.html'; // Redirect to main app
 });
