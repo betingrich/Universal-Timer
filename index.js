@@ -1,52 +1,67 @@
-// Ensure user is logged in before accessing the main page
 document.addEventListener("DOMContentLoaded", () => {
   const username = localStorage.getItem("username");
 
+  // Redirect to login if no user is found
   if (!username) {
     alert("You must log in first!");
     window.location.href = "login.html";
   } else {
     document.getElementById("welcome-message").textContent = `Welcome, ${username}!`;
   }
-});
 
-// Example of main page functionality
-const tasks = []; // Array to store tasks
+  // Clock and Date Functionality
+  const currentTime = document.getElementById("current-time");
+  const currentDate = document.getElementById("current-date");
 
-// Add a task
-document.getElementById("add-task-form").addEventListener("submit", (event) => {
-  event.preventDefault();
-
-  const taskInput = document.getElementById("task-input");
-  const task = taskInput.value.trim();
-
-  if (!task) {
-    alert("Task cannot be empty!");
-    return;
+  function updateClock() {
+    const now = new Date();
+    currentTime.textContent = now.toLocaleTimeString();
+    currentDate.textContent = now.toLocaleDateString('en-US', {
+      weekday: 'long',
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+    });
   }
 
-  tasks.push(task);
-  renderTasks();
-  taskInput.value = "";
+  setInterval(updateClock, 1000);
+  updateClock();
+
+  // Page Navigation
+  const clockPage = document.getElementById("clock-page");
+  const taskPage = document.getElementById("task-page");
+  const gotoTasksButton = document.getElementById("goto-tasks");
+  const gotoClockButton = document.getElementById("goto-clock");
+
+  gotoTasksButton.addEventListener("click", () => {
+    clockPage.classList.add("hidden");
+    taskPage.classList.remove("hidden");
+  });
+
+  gotoClockButton.addEventListener("click", () => {
+    taskPage.classList.add("hidden");
+    clockPage.classList.remove("hidden");
+  });
+
+  // Task Functionality
+  const taskForm = document.getElementById("add-task-form");
+  const taskInput = document.getElementById("task-input");
+  const taskList = document.getElementById("task-list");
+
+  taskForm.addEventListener("submit", (event) => {
+    event.preventDefault();
+    const taskText = taskInput.value.trim();
+    if (taskText) {
+      const taskItem = document.createElement("li");
+      taskItem.textContent = taskText;
+      taskList.appendChild(taskItem);
+      taskInput.value = "";
+    }
+  });
 });
 
-// Render tasks
-function renderTasks() {
-  const taskList = document.getElementById("task-list");
-  taskList.innerHTML = "";
-
-  tasks.forEach((task, index) => {
-    const li = document.createElement("li");
-    li.textContent = task;
-
-    const deleteBtn = document.createElement("button");
-    deleteBtn.textContent = "Delete";
-    deleteBtn.onclick = () => {
-      tasks.splice(index, 1);
-      renderTasks();
-    };
-
-    li.appendChild(deleteBtn);
-    taskList.appendChild(li);
-  });
+// Logout Functionality
+function logout() {
+  localStorage.clear(); // Clear user data
+  window.location.href = "login.html"; // Redirect to login
 }
