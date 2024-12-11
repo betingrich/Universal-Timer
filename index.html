@@ -3,50 +3,39 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Marisel's Timer & To-Do</title>
+  <title>Main Page</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <!-- Page Container -->
-  <div id="homepage" class="page">
-    <!-- Time Display -->
-    <div class="time-container">
-      <div id="big-time"></div>
-      <div id="location-weather">
-        <span id="location">Detecting...</span> | <span id="weather">--°C</span>
+  <!-- Clock and Date Section -->
+  <div id="clock-page" class="page">
+    <header>
+      <h1 id="welcome-message"></h1>
+    </header>
+    <main>
+      <div id="time-container">
+        <div id="current-time">--:--:--</div>
+        <div id="current-date">--, -- -- ----</div>
       </div>
-    </div>
-    <!-- Navigation Button -->
-    <button id="goto-tasks" class="btn primary">Go to Tasks</button>
-    <button id="logout" class="btn secondary">Logout</button>
+      <button id="goto-tasks" class="btn primary">Go to Tasks</button>
+    </main>
   </div>
 
-  <!-- To-Do Page -->
-  <div id="todo-page" class="page hidden">
-    <h1>Daily Schedule</h1>
-    <p>Plan your tasks between <strong>7 AM</strong> and <strong>10 PM</strong>.</p>
-
-    <!-- Task Table -->
-    <table id="task-table">
-      <thead>
-        <tr>
-          <th>Time</th>
-          <th>Task</th>
-          <th>Status</th>
-        </tr>
-      </thead>
-      <tbody>
-        <!-- Rows for each hour -->
-      </tbody>
-    </table>
-
-    <!-- Navigation Button -->
-    <button id="goto-home" class="btn secondary">Back to Clock</button>
+  <!-- Task Section -->
+  <div id="task-page" class="page hidden">
+    <h1>Your Tasks</h1>
+    <form id="add-task-form">
+      <input type="text" id="task-input" placeholder="Enter your task" required>
+      <button type="submit">Add Task</button>
+    </form>
+    <ul id="task-list"></ul>
+    <button id="goto-clock" class="btn secondary">Back to Clock</button>
   </div>
 
-  <!-- Audio Reminder -->
-  <audio id="reminder-audio" src="your-audio-file.mp3"></audio>
+  <footer>
+    <button onclick="logout()">Logout</button>
+  </footer>
 
-  <script src="script.js"></script>
+  <script src="index.js"></script>
 </body>
 </html>
