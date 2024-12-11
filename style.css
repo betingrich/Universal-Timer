@@ -3,7 +3,7 @@ body {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
-  background-color: #f4f4f4;
+  background-color: #f8f9fa;
   color: #333;
 }
 
@@ -57,15 +57,40 @@ body {
   background-color: #5a6268;
 }
 
-/* Task List Styles */
-#task-list {
-  list-style-type: none;
-  padding: 0;
+/* Task Table */
+#task-table {
+  width: 100%;
+  margin-top: 20px;
+  border-collapse: collapse;
 }
 
-#task-list li {
+#task-table th,
+#task-table td {
+  border: 1px solid #dee2e6;
   padding: 10px;
-  margin: 5px 0;
-  background-color: #e9ecef;
-  border-radius: 5px;
+  text-align: left;
+}
+
+#task-table th {
+  background-color: #007BFF;
+  color: white;
+}
+
+#task-table td {
+  background-color: #f8f9fa;
+}
+
+#task-form {
+  margin: 20px 0;
+}
+
+#task-form input,
+#task-form select {
+  padding: 10px;
+  font-size: 1rem;
+  margin-right: 10px;
+}
+
+#task-form button {
+  padding: 10px 20px;
 }
