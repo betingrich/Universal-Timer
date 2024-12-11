@@ -1,60 +1,66 @@
 /* General Styles */
 body {
-  font-family: Arial, sans-serif;
+  font-family: 'Arial', sans-serif;
   margin: 0;
   padding: 0;
-  background-color: #f8f9fa;
-  color: #333;
+  color: #fff;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
 }
 
-.page {
-  padding: 20px;
-  text-align: center;
+/* Backgrounds */
+#clock-page {
+  background-image: url('https://i.ibb.co/N7Vd2kL/time-page.jpg');
 }
 
-.hidden {
-  display: none;
-}
-
-/* Clock and Date Styles */
-#time-container {
-  margin-top: 20px;
-}
-
-#current-time {
-  font-size: 3rem;
-  font-weight: bold;
-}
-
-#current-date {
-  font-size: 1.5rem;
-  margin-top: 10px;
+#task-page {
+  background-image: url('https://i.ibb.co/7prt6R0/task-page.jpg');
 }
 
 /* Button Styles */
 .btn {
   display: inline-block;
-  margin-top: 20px;
-  padding: 10px 20px;
+  margin: 20px 10px;
+  padding: 12px 25px;
   font-size: 1rem;
   color: #fff;
-  background-color: #007BFF;
-  border: none;
-  border-radius: 5px;
+  background-color: rgba(0, 0, 0, 0.8);
+  border: 2px solid #fff;
+  border-radius: 30px;
   cursor: pointer;
-  transition: background-color 0.3s;
+  transition: all 0.4s ease;
 }
 
 .btn:hover {
-  background-color: #0056b3;
+  background-color: #007BFF;
+  transform: scale(1.1);
 }
 
-.btn.secondary {
-  background-color: #6c757d;
+/* Form and Placeholder Styling */
+input, select {
+  width: calc(100% - 40px);
+  margin: 10px auto;
+  padding: 12px;
+  font-size: 1rem;
+  border: 2px solid transparent;
+  border-radius: 20px;
+  outline: none;
+  transition: border-color 0.5s ease;
 }
 
-.btn.secondary:hover {
-  background-color: #5a6268;
+input:focus, select:focus {
+  border-color: transparent;
+  animation: rainbow-border 3s linear infinite;
+}
+
+/* Rainbow Border Animation */
+@keyframes rainbow-border {
+  0% { border-color: red; }
+  25% { border-color: orange; }
+  50% { border-color: yellow; }
+  75% { border-color: green; }
+  100% { border-color: blue; }
 }
 
 /* Task Table */
@@ -62,35 +68,36 @@ body {
   width: 100%;
   margin-top: 20px;
   border-collapse: collapse;
+  color: #000;
 }
 
-#task-table th,
-#task-table td {
-  border: 1px solid #dee2e6;
+#task-table th, #task-table td {
+  border: 1px solid rgba(255, 255, 255, 0.7);
   padding: 10px;
   text-align: left;
 }
 
 #task-table th {
-  background-color: #007BFF;
-  color: white;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: #fff;
 }
 
 #task-table td {
-  background-color: #f8f9fa;
+  background-color: rgba(255, 255, 255, 0.7);
+  color: #000;
 }
 
-#task-form {
-  margin: 20px 0;
-}
-
-#task-form input,
-#task-form select {
+footer {
+  text-align: center;
   padding: 10px;
-  font-size: 1rem;
-  margin-right: 10px;
+  color: #fff;
 }
 
-#task-form button {
-  padding: 10px 20px;
+/* Specific Page Heights */
+.page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
