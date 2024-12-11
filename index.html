@@ -23,12 +23,30 @@
 
   <!-- Task Section -->
   <div id="task-page" class="page hidden">
-    <h1>Your Tasks</h1>
-    <form id="add-task-form">
-      <input type="text" id="task-input" placeholder="Enter your task" required>
-      <button type="submit">Add Task</button>
+    <h1>Daily Schedule</h1>
+    <p>Plan your tasks for the day in predefined intervals.</p>
+
+    <form id="task-form">
+      <label for="time-select">Select Time:</label>
+      <select id="time-select">
+        <!-- Options will be generated dynamically -->
+      </select>
+      <input type="text" id="task-input" placeholder="Enter task here" required>
+      <button type="submit" class="btn primary">Add Task</button>
     </form>
-    <ul id="task-list"></ul>
+
+    <table id="task-table">
+      <thead>
+        <tr>
+          <th>Time</th>
+          <th>Task</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Task rows will be dynamically generated -->
+      </tbody>
+    </table>
+
     <button id="goto-clock" class="btn secondary">Back to Clock</button>
   </div>
 
