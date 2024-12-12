@@ -128,3 +128,98 @@ tr:nth-child(even) {
 .btn:hover {
   opacity: 0.9;
 }
+body {
+  font-family: Arial, sans-serif;
+  background: linear-gradient(to bottom right, #1e3c72, #2a5298);
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  margin: 0;
+}
+
+.auth-container {
+  background: #2c2f33;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+  width: 100%;
+  max-width: 400px;
+}
+
+h2 {
+  margin-bottom: 20px;
+  text-align: center;
+  font-weight: bold;
+  color: #ff9800;
+}
+
+.form-box {
+  display: none;
+}
+
+.form-box.active {
+  display: block;
+}
+
+.input-group {
+  margin-bottom: 15px;
+}
+
+label {
+  display: block;
+  margin-bottom: 5px;
+  font-size: 14px;
+  color: #ccc;
+}
+
+input {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ff9800;
+  border-radius: 5px;
+  font-size: 16px;
+  background: #40444b;
+  color: white;
+}
+
+input:focus {
+  border-color: #ff5722;
+  outline: none;
+}
+
+.btn {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  text-transform: uppercase;
+}
+
+.btn.primary {
+  background: #ff9800;
+  color: white;
+  font-weight: bold;
+}
+
+.btn.primary:hover {
+  background: #ff5722;
+}
+
+p {
+  text-align: center;
+  margin-top: 15px;
+  font-size: 14px;
+}
+
+p a {
+  color: #ff9800;
+  text-decoration: none;
+}
+
+p a:hover {
+  text-decoration: underline;
+  }
