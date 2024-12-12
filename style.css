@@ -1,262 +1,130 @@
-/* General Body and Layout */
+/* General Page Styling */
 body {
+  font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
-  font-family: 'Roboto', sans-serif;
-  background-color: black; /* Full black background */
-  color: #fff;
-  height: 100vh;
-  overflow-x: hidden;
-}
-
-/* Center everything in the middle */
-* {
-  box-sizing: border-box;
-}
-
-.container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
-  width: 100%;
-  flex-direction: column;
-}
-
-/* Common Button Styles */
-button {
-  display: inline-block;
-  padding: 12px 24px;
-  font-size: 1rem;
-  font-weight: bold;
+  background: #121212;
   color: white;
-  background-color: #007BFF;
-  border: none;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: background-color 0.3s, transform 0.2s;
-}
-
-button:hover {
-  background-color: #0056b3;
-  transform: scale(1.05);
-}
-
-button:active {
-  background-color: #004494;
-}
-
-/* Auth Pages - Login / Signup */
-.auth-page {
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
+  justify-content: center;
   min-height: 100vh;
-  background-color: #000;
 }
 
-.auth-container {
-  background-color: rgba(0, 0, 0, 0.9);
-  padding: 40px;
-  border-radius: 12px;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.6);
-  width: 100%;
-  max-width: 450px;
-  text-align: center;
+.page {
+  display: none;
+  width: 90%;
+  max-width: 600px;
   margin: auto;
-}
-
-.auth-container h1 {
-  margin-bottom: 20px;
-  font-size: 2rem;
-}
-
-.auth-container input {
-  width: 100%;
-  padding: 14px;
-  margin: 10px 0;
-  border: 2px solid #ccc;
-  border-radius: 8px;
-  font-size: 1rem;
-  background-color: #fff;
-  color: #333;
-  transition: border-color 0.3s ease;
-}
-
-/* Rainbow border on focus */
-.auth-container input:focus {
-  border-color: #ff0000;
-  outline: none;
-  animation: rainbowBorder 2s infinite;
-}
-
-/* Keyframes for the rainbow border */
-@keyframes rainbowBorder {
-  0% { border-color: red; }
-  14% { border-color: orange; }
-  28% { border-color: yellow; }
-  42% { border-color: green; }
-  57% { border-color: blue; }
-  71% { border-color: indigo; }
-  85% { border-color: violet; }
-  100% { border-color: red; }
-}
-
-.auth-container button {
-  width: 100%;
-  padding: 14px;
-  margin-top: 20px;
-  background-color: #007BFF;
-}
-
-.auth-container button:hover {
-  background-color: #0056b3;
-}
-
-.auth-container a {
-  display: block;
-  margin-top: 15px;
-  color: #00f;
-  text-decoration: none;
-  font-size: 0.9rem;
-}
-
-.auth-container a:hover {
-  text-decoration: underline;
-}
-
-/* Main Page */
-.index-page {
-  background-color: black;
-  min-height: 100vh;
-  padding: 50px;
   text-align: center;
 }
 
-.index-page .clock-container {
-  margin-top: 40px;
+.page.active {
+  display: block;
+}
+
+/* Header Styling */
+header h1 {
+  font-size: 2rem;
+  margin-bottom: 20px;
+  color: #ff9800;
+}
+
+/* Clock Styling */
+#time-container {
+  margin: 20px 0;
+}
+
+#current-time {
   font-size: 3rem;
   font-weight: bold;
-  color: #fff;
-  text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.7);
+  color: #00ff00;
 }
 
-.index-page .clock-container p {
-  font-size: 1.5rem;
-  margin-top: 10px;
-  color: #fff;
+#current-date {
+  font-size: 1.2rem;
+  color: #f5f5f5;
 }
 
-/* Task Page */
-.task-page {
-  background-color: #111;
-  min-height: 100vh;
-  padding: 50px;
+/* Task Form Styling */
+form {
+  margin: 20px 0;
+}
+
+.form-group {
+  margin: 10px 0;
+}
+
+input, select {
+  width: 80%;
+  padding: 10px;
+  margin: 5px 0;
+  border: 2px solid #ff9800;
+  border-radius: 5px;
+  font-size: 1rem;
+}
+
+input:focus, select:focus {
+  outline: none;
+  border-color: #ff5722;
+  box-shadow: 0 0 5px #ff5722;
+}
+
+/* Task Table */
+table {
+  width: 100%;
+  margin: 20px 0;
+  border-collapse: collapse;
+  background-color: #1f1f1f;
+}
+
+th, td {
+  border: 1px solid #ff9800;
+  padding: 10px;
   text-align: center;
 }
 
-.task-container {
-  background-color: rgba(255, 255, 255, 0.9);
-  padding: 30px;
-  border-radius: 15px;
-  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
-  width: 100%;
-  max-width: 700px;
-  margin: 0 auto;
+th {
+  background: #ff9800;
+  color: #121212;
 }
 
-.task-container h1 {
-  color: #333;
-  font-size: 2rem;
-  margin-bottom: 20px;
+td {
+  color: #e0e0e0;
 }
 
-.task-container ul {
-  list-style: none;
-  padding: 0;
+tr:nth-child(even) {
+  background: #333333;
 }
 
-.task-container ul li {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  background-color: #f9f9f9;
-  padding: 12px;
-  border-radius: 8px;
-  margin-bottom: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
-}
-
-.task-container ul li button {
-  background-color: #ff4d4d;
-  color: white;
-  padding: 8px 16px;
+/* Button Styling */
+.btn {
+  display: inline-block;
+  padding: 10px 20px;
+  margin: 10px 0;
   border: none;
   border-radius: 5px;
   cursor: pointer;
-  transition: background-color 0.3s;
+  font-size: 1rem;
+  text-transform: uppercase;
 }
 
-.task-container ul li button:hover {
-  background-color: #cc0000;
+.btn.primary {
+  background: #ff9800;
+  color: #121212;
 }
 
-.task-container ul li button:active {
-  background-color: #990000;
+.btn.secondary {
+  background: #00bcd4;
+  color: #121212;
 }
 
-/* Task Table Styles */
-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 30px;
+.btn.logout {
+  background: #f44336;
+  color: white;
 }
 
-table th, table td {
-  padding: 12px;
-  text-align: left;
-  border-bottom: 1px solid #ddd;
-}
-
-table th {
-  background-color: #f4f4f9;
-  color: #333;
-}
-
-table td {
-  background-color: #fff;
-}
-
-table tr:hover {
-  background-color: #f1f1f1;
-}
-
-/* Responsive Styles */
-@media (max-width: 768px) {
-  .auth-container {
-    width: 90%;
-    padding: 20px;
-  }
-
-  .index-page .clock-container {
-    font-size: 2rem;
-  }
-
-  .task-container {
-    width: 90%;
-  }
-}
-
-@media (max-width: 480px) {
-  .index-page .clock-container {
-    font-size: 1.8rem;
-  }
-
-  .auth-container h1 {
-    font-size: 1.6rem;
-  }
-
-  .task-container h1 {
-    font-size: 1.6rem;
-  }
+.btn:hover {
+  opacity: 0.9;
 }
